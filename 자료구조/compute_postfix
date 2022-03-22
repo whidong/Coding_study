@@ -1,0 +1,55 @@
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, val):
+        self.items.append(val)
+
+    def pop(self):
+        try:
+            return self.items.pop()
+        except IndexError:
+            print("Stack is empty")
+
+    def top(self):
+        try:
+            return self.items[-1]
+        except IndexError:
+            print("Stack is empty")
+
+    def __len__(self):
+        return len(self.items)
+
+    def isEmpty(self):
+        return self.__len__() == 0
+
+def compute_postfix(postfix):
+		compustack = Stack()
+		outstack = []
+		token_list = postfix.split()
+		
+		for token in token_list:
+				if token in '+-/*^':
+					a = float(compustack.pop())
+					b = float(compustack.pop())
+					if token == '+':
+						c = b + a
+					elif token == '-':
+						c = b - a
+					elif token == '/':
+						c = b / a
+					elif token == '*':
+						c = b * a
+					elif token == '^':
+						c = b ^ a
+					compustack.push(c)
+				else:
+					compustack.push(token)
+		return compustack.pop()
+	
+	
+	
+	
+postfix = input()
+compute_expr = compute_postfix(postfix)
+print("{:.4f}".format(compute_expr)) #소수점 4자리까지 표현하는 방식 {:nf} 나중에 정리하기
