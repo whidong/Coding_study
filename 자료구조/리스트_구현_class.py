@@ -61,19 +61,12 @@ class myList():
 		# 1. k 값이 주어진 경우와 주어지지 않은 경우 구별해야 함
 		if k<0:# k값이 음수일 수도 있디.
 			k += self.n
-		x = self.A[k]
+		x = self.A[k]# 2. x = self.A[k]
 		self.A[k] = None
-		# 2. x = self.A[k]
-		
-		# 3. A[k]의 오른쪽의 값들이 한 칸씩 왼쪽으로 이동해 메꿈
-		for i in range(k+1, self.n, 1):
+		for i in range(k+1, self.n, 1):# 3. A[k]의 오른쪽의 값들이 한 칸씩 왼쪽으로 이동해 메꿈
 			self.A[i-1]= self.A[i]
-		
-		# 4. self.n -= 1
-		self.n -= 1
-		# 5. return x
-		
-		return x 
+		self.n -= 1# 4. self.n -= 1
+		return x # 5. return x
 		
 
 	def insert(self, k, x):
