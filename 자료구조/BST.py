@@ -11,6 +11,21 @@ class BST:
 	def __init__(self):
 		self.root = None	
 		self.size = 0
+
+	def update_height(self, v):
+		while v != None:
+			left = -1
+			right = -1
+			if v.left:
+				left = v.left.height
+			if v.right:
+				right = v.right.height
+			if left>=right:
+				v.height = left + 1
+			else:
+				v.height = right + 1
+			v = v.parent
+
 	def __len__(self):
 		return self.size
 
@@ -25,11 +40,13 @@ class BST:
 			self.inorder(v.left)
 			print(v.key, end =' ')
 			self.inorder(v.right)
+
 	def postorder(self, v):
 		if v != None:
 			self.postorder(v.left)
 			self.postorder(v.right)
 			print(v.key, end =' ')
+
 	def find_loc(self, key):
 		if self.size == 0:
 			return None
@@ -45,10 +62,12 @@ class BST:
 				p = v
 				v = v.left
 		return p
+
 	def search(self, key):
 		p = self.find_loc(key)
 		if p and p.key == key:
 			return p
+
 	def insert(self, key):
 		p = self.find_loc(key)
 		if p == None or p.key != key:
@@ -57,38 +76,31 @@ class BST:
 				self.root = v
 			else:
 				v.parent = p
-				if p.height == v.height:
-					p.height = v.height + 1
 				if p.key >= key:
 					p.left = v
 				else:
 					p.right = v
-			m, n = p, v
-			while m:
-				if m.height == n.height:
-					m.height = n.height + 1
-				m, n = m.parent, m
 			self.size += 1
+			self.update_height(v)
 			return v
 		else:
 			return None
+
+	def height(self, x): 
+		if x == None: return -1
+		else: return x.height
+
 	def deleteByMerging(self, x):
 		a, b, pt = x.left, x.right, x.parent
-		if a != None:
+		if a == None:
+			c = b
+		else:
 			c = m = a
 			while m.right:
 				m = m.right
 			if b != None:
 				b.parent = m
 			m.right = b
-			s = m
-			f, k = None, m.right
-			while k != a:
-				f, k = k, k.parent
-				if f.height >= k.height:
-					k.height = f.height + 1
-		else:
-			c, s = b, pt
 		if pt == None:
 			if c:
 				c.parent = None
@@ -99,97 +111,82 @@ class BST:
 			else:
 				pt.right = c
 			if c:
-				c.parent = pt
+				c.parent = pt 
+		if c:
 			if c.parent:
-				f, k = c, c.parent
-				if f.height >= k.height:
-					while k:
-						if f.height >= k.height:
-							k.height = f.heighint + 1 #이부분 C값 위치찾은뒤 부모노드존재할때 높이값 수정하는 부분 여기서부터
-						f, k = k, f.parent
+				k = c.parent
 		self.size -= 1
-	def deleteByCopying(self, x):
+		self.update_height(pt)
+		return pt
+
+	def deleteByCopying(self, x):	
+		if x == None:
+				return
 		a, b, pt = x.left, x.right, x.parent
-		if a == None and b == None:
-			if x.parent == None:
-				self.root = None
-			else:
-				if pt.left == x:
-					pt.left = None	
-				else:
-					pt.right = None
-			del x
-		elif a:
+		y = None
+		if a:
 			y = a
 			while y.right:
 				y = y.right
 			x.key = y.key
-			yp, d = y.parent, y.left
-			if y.left:
-				d.parent = y.parent
-			if yp.left == y:
-				yp.left = d
-			else:
-				yp.right = d
-			del y
 		elif b:
 			y = b
 			while y.left:
 				y = y.left
-			x.key = y.key
-			yp, d = y.parent, y.right
-			if y.right:
-				d.parent = y.parent
-			if yp.left == y:
-				yp.left = d
+		if y == None:
+			if pt:
+				if pt.left == x:
+					pt.left = None
+				else: 
+					pt.right = None
+				x.parent = None
 			else:
-				yp.right = d
-			del y
+				self.root = None
+			apt = pt
+		else:
+			x.key = y.key
+			ya, yb, yp = y.left, y.right, y.parent
+			c = ya
+			if yb:
+				c = yb
+			if c:
+				c.parent = yp
+			if yp.left == y:
+				yp.left = c
+			else:
+				yp.right = c
+			apt = yp
 		self.size -= 1
-        # 노드들의 height 정보 update 필요
-
-	def height(self, x): # 노드 x의 height 값을 리턴
-		if x == None: return -1
-		else: return x.height
+		self.update_height(apt)
+		return apt
 
 	def succ(self, x):
-		pt = x.parent
-		if x.right == None:
-			if pt == None:
-				return None
-			if pt.left == x:
-				return pt
-			if pt.right == x:
-				if pt.parent:
-					ppt = pt.parent
-					if pt == ppt.left:
-						return ppt
-				return None
-		p = None
-		v = x
-		if x.right:
-			p = v
-			v = v.right
-		while v != None:	
-				p = v
-				v = v.left
-		return p
-
+		if x == None or self.size == 1:
+			return None
+		r, pt = x.right, x.parent
+		while r and r.left:
+			r = r.left
+		if r:
+			return r
+		else:
+			while pt and pt.right == x:
+				x = pt
+				pt = pt.parent
+			return pt
+				
 	def pred(self, x):
-		pt = x.parent
-		if x.left == None:
-			if x.parent == None or pt.left == x:
-				return None
-			return x.parent
-		p = None
-		v = x
-		if x.left:
-			p = v
-			v = v.left
-		while v != None:	
-				p = v
-				v = v.right
-		return p
+		if x == None or self.size == 1:
+			return None
+		l, pt = x.left, x.parent
+		while l and l.right:
+			l = l.right
+		if l:
+			return l
+		else:
+			while pt and pt.left == x:
+				x = pt
+				pt = pt.parent
+			return pt
 
 	def rotateLeft(self, x): 
 		if x == None: 
@@ -208,33 +205,16 @@ class BST:
 				self.root = z
 		z.left = x
 		x.parent = z
+		if z.parent == None:
+			self.root = z
 		if b: 
 			x.right = b
 			b.parent = x
-			if x.left and b.height< x.left.height:
-				x.height = x.left.height + 1
-			else:
-				x.height = b.height + 1
 		else:
 			x.right = None
-			if x.left:
-				x.height = x.left.height + 1
-			else:
-				x.height = 0
-		if z.right:
-			if x.height <= z.right.height:
-				z.height = z.right.height + 1
-			else:
-				z.height = x.height + 1
-		else:
-			z.height = x.height + 1
-		m, n = z.parent, z
-		while m:
-			if m.height == n.height:
-				m.height = n.height + 1
-			n, m = m, m.parent
-				# 균형이진탐색트리의 1차시 동영상 시청 필요 (height 정보 수정 필요)
-
+		self.update_height(x)
+		return z
+	
 	def rotateRight(self, x):
 		if x == None: 
 			return
@@ -252,31 +232,15 @@ class BST:
 			self.root = z
 		z.right = x
 		x.parent = z
+		if z.parent == None:
+			self.root = z
 		if b: 
 			x.left = b
 			b.parent = x
-			if x.right and b.height< x.right.height:
-				x.height = x.right.height + 1
-			else:
-				x.height = b.height + 1
 		else:
 			x.left = None
-			if x.right:
-				x.height = x.right.height + 1
-			else:
-				x.height = 0
-		if z.left:
-			if x.height <= z.left.height:
-				z.height = z.left.height + 1
-			else:
-				z.height = x.height + 1
-		else:
-			z.height = x.height + 1
-		m, n = z.parent, z
-		while m:
-			if m.height == n.height:
-				m.height = n.height + 1
-			n, m = m, m.parent
+		self.update_height(x)
+		return z
 		
 			# 균형이진탐색트리의 1차시 동영상 시청 필요 (height 정보 수정 필요)
 	
