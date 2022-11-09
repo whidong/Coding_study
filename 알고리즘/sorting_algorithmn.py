@@ -88,11 +88,11 @@ def quick_sort2(A, first, last): #quick sort + insertion sort 2번방법
 	if right-1 - first <= 10:
 		return
 	else:
-		quick_sort1(A, first,right)
+		quick_sort2(A, first,right)
 	if last - left <= 10:
 		return
 	else:
-		quick_sort1(A, left, last)
+		quick_sort2(A, left, last)
 	insertion_sort2(A,first,last)
 
 def insertion_sort2(A, s ,n):
@@ -202,27 +202,34 @@ def merge_sort_threeway(A, first, last):
 
 
 def heap_sort(A):
+	global Hc, Hs
 	n = len(A)
 	for k in range(n-1, -1, -1): 
 		heapify_down(A, k, n)
 	for k in range(len(A)-1, -1, -1):
 		A[0],A[k] = A[k],A[0]
+		Hs += 1
 		n = n - 1 
 		heapify_down(A, 0, n)
 
 def heapify_down(A, k, n):
+	global Hc, Hs
 	while 2*k+1 < n: 
 		L, R = 2*k + 1, 2*k + 2 
 		if L < n and A[L] > A[k]:
+			Hc += 1
 			m = L
 		else:
+			Hc += 1
 			m = k
 		if R < n and A[R] > A[m]:
+			Hc += 1
 			m = R
 		if m != k: 
 			A[k], A[m] = A[m], A[k]
 			k = m
-		else: break 
+			Hs += 1
+		else: break
 ##
 ## 여기에 세 가지 정렬함수를 위한 코드를...
 ##
@@ -272,7 +279,7 @@ print("time =", timeit.timeit("merge_sort(B, 0, n-1)", globals=globals(), number
 print("  comparisons = {:10d}, swaps = {:10d}\n".format(Mc, Ms))
 print("merge_sort_threeway:")
 print("time =", timeit.timeit("merge_sort_threeway(F, 0, n-1)", globals=globals(), number=1))
-print("  comparisons = {:10d}, swaps = {:10d}\n".format(Mc, Ms))
+print("  comparisons = {:10d}, swaps = {:10d}\n".format(M1c, M1s))
 print("Heap sort:")
 print("time =", timeit.timeit("heap_sort(C)", globals=globals(), number=1))
 print("  comparisons = {:10d}, swaps = {:10d}\n".format(Hc, Hs))
