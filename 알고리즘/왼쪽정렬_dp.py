@@ -8,29 +8,34 @@ def calculate_penalty(A, W):
 	return penalty
 	
 wordlenth, wordcounds, endindex = [], [], []
-count, penalty, countlen  = 0, [], 0
+count, allen, countlen  = 0, 0, 0
 for i in range(len(words)):
 	wordlenth.append(len(words[i]))
 	if countlen + 1 + len(words[i]) <= W:
 		if countlen == 0:
+			allen += len(words[i])
 			countlen += len(words[i])
 		else:
+			allen += len(words[i])
 			countlen += len(words[i]) + 1
 	elif countlen + 1 + len(words[i]) > W:
 		endindex.append(i-1)
 		wordcounds.append(countlen)
 		count += 1
 		countlen = 0
+		allen += len(words[i])
 		countlen += len(words[i])
 	if i == len(words)-1:
 		wordcounds.append(countlen)
 		count += 1
 		countlen = 0
-penalty.append(calculate_penalty(wordcounds, W))
+penalty = calculate_penalty(wordcounds, W)
 for j in range(len(endindex)-1,-1,-1):
-	if wordlenth[endindex[j]] + wordcounds[j+1] + 1 <= W:
+	while wordlenth[endindex[j]] + wordcounds[j+1] + 1 <= W and wordcounds[j+1] < wordcounds [j]:
 		wordcounds[j] -= wordlenth[endindex[j]] + 1
 		wordcounds[j+1] += wordlenth[endindex[j]] + 1
 		endindex[j] -= 1
-		penalty.append(calculate_penalty(wordcounds, W))
-print(min(penalty))
+		a = calculate_penalty(wordcounds, W)
+		if a < penalty:
+			penalty = a
+print(penalty)
