@@ -31,6 +31,19 @@ for i in range(len(words)):
 		countlen = 0
 penalty = calculate_penalty(wordcounds, W)
 for j in range(len(endindex)-1,-1,-1):
+	while wordcounds[j+1] < wordcounds[j] and wordlenth[endindex[j]] + wordcounds[j+1] + 1 > W:
+		check = None
+		for k in range(len(endindex)-1, j, -1):
+			if wordlenth[endindex[k]] + wordcounds[k+1] + 1 <= W:
+				check = True
+				wordcounds[k] -= wordlenth[endindex[k]] + 1
+				wordcounds[k+1] += wordlenth[endindex[k]] + 1
+				endindex[k] -= 1
+				a = calculate_penalty(wordcounds, W)
+				if a < penalty:
+					penalty = a
+		if check == None:
+			break
 	# 뒤의 값이 앞보다 작은데 넘길수 없는 상태일때 맨뒤에서부터 단어 하나씩 뒤로 넘겨주고 넘길수 있을때 까지 반복하도록 코드 작성
 	# 만약 한칸씩 뒤로 넘겼는데도 넘길수 없다면 넘길수 있을때까지 반복하도록 코드 작성 
 	while wordlenth[endindex[j]] + wordcounds[j+1] + 1 <= W and wordcounds[j+1] < wordcounds [j]:
