@@ -65,6 +65,8 @@ class SinglyLinkedList:
 			self.size -= 1
 			return key
 		# tail 노드의 값 리턴. empty list이면 None 리턴
+	def first(self):
+		return self.head
 
 	def search(self, key):
 		v = self.head
