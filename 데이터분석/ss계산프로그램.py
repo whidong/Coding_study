@@ -8,25 +8,97 @@ def calculate():
   ent_rmss.delete(0, len(ent_rmss.get()))
   ent_rmvss.delete(0, len(ent_rmvss.get()))
   #전폭기
-  first_a1 = float(ent1_a.get())
-  first_a2 = float(ent2_a.get())
-  first_a3 = float(ent3_a.get())
-  dry_a1 = float(ent4_a.get())
-  dry_a2 = float(ent5_a.get())
-  dry_a3 = float(ent6_a.get())
-  burn_a1 = float(ent7_a.get())
-  burn_a2 = float(ent8_a.get())
-  burn_a3 = float(ent9_a.get())
+  if len(ent1_a.get()) == 0:
+    first_a1 = 0
+    ent1_a.insert(0, 0)
+  else:
+    first_a1 = float(ent1_a.get())
+  if len(ent2_a.get()) == 0:
+    first_a2 = 0
+    ent2_a.insert(0, 0)
+  else:
+    first_a2 = float(ent2_a.get())
+  if len(ent3_a.get()) == 0:
+    first_a3 = 0
+    ent3_a.insert(0, 0)
+  else:
+    first_a3 = float(ent3_a.get())
+  if len(ent4_a.get()) == 0:
+    dry_a1 = 0
+    ent4_a.insert(0, 0)
+  else:
+    dry_a1 = float(ent4_a.get())
+  if len(ent5_a.get()) == 0:
+    dry_a2 = 0
+    ent5_a.insert(0, 0)
+  else:
+    dry_a2 = float(ent5_a.get())
+  if len(ent6_a.get()) == 0:
+    dry_a3 = 0
+    ent6_a.insert(0, 0)
+  else:
+    dry_a3 = float(ent6_a.get())
+  if len(ent7_a.get()) == 0:
+    burn_a1 = 0
+    ent7_a.insert(0, 0)
+  else:
+    burn_a1 = float(ent7_a.get())
+  if len(ent8_a.get()) == 0:
+    burn_a2 = 0
+    ent8_a.insert(0, 0)
+  else:
+    burn_a2 = float(ent8_a.get())
+  if len(ent9_a.get()) == 0:
+    burn_a3 = 0
+    ent9_a.insert(0, 0)
+  else:
+    burn_a3 = float(ent9_a.get())
   #막분리
-  first_m1 = float(ent1_m.get())
-  first_m2 = float(ent2_m.get())
-  first_m3 = float(ent3_m.get())
-  dry_m1 = float(ent4_m.get())
-  dry_m2 = float(ent5_m.get())
-  dry_m3 = float(ent6_m.get())
-  burn_m1 = float(ent7_m.get())
-  burn_m2 = float(ent8_m.get())
-  burn_m3 = float(ent9_m.get())
+  if len(ent1_m.get()) == 0:
+    first_m1 = 0
+    ent1_m.insert(0, 0)
+  else:
+    first_m1 = float(ent1_m.get())
+  if len(ent2_m.get()) == 0:
+    first_m2 = 0
+    ent2_m.insert(0, 0)
+  else:
+    first_m2 = float(ent2_m.get())
+  if len(ent3_m.get()) == 0:
+    first_m3 = 0
+    ent3_m.insert(0, 0)
+  else:
+    first_m3 = float(ent3_m.get())
+  if len(ent4_m.get()) == 0:
+    dry_m1 = 0
+    ent4_m.insert(0, 0)
+  else:
+    dry_m1 = float(ent4_m.get())
+  if len(ent5_m.get()) == 0:
+    dry_m2 = 0
+    ent5_m.insert(0, 0)
+  else:
+    dry_m2 = float(ent5_m.get())
+  if len(ent6_m.get()) == 0:
+    dry_m3 = 0
+    ent6_m.insert(0, 0)
+  else:
+    dry_m3 = float(ent6_m.get())
+  if len(ent7_m.get()) == 0:
+    burn_m1 = 0
+    ent7_m.insert(0, 0)
+  else:
+    burn_m1 = float(ent7_m.get())
+  if len(ent8_m.get()) == 0:
+    burn_m2 = 0
+    ent8_m.insert(0, 0)
+  else:
+    burn_m2 = float(ent8_m.get())
+  if len(ent9_m.get()) == 0:
+    burn_m3 = 0
+    ent9_m.insert(0, 0)
+  else:
+    burn_m3 = float(ent9_m.get())
   #전폭기 계산
   ssa1 = (dry_a1-first_a1)/10*(10**6)
   ssa2 = (dry_a2-first_a2)/10*(10**6)
