@@ -13,4 +13,4 @@ def show_binomial_distribution(n, p):
   return None
 show_binomial_distribution(10, 0.1)
 show_binomial_distribution(10, 0.5)
-show_binomial_distribution(10, 0.9)
+show_ebinomial_distribution(10, 0.9)

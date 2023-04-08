@@ -24,12 +24,10 @@ def compute_e_ver2(n):
 n = int(input())
 
 before_1 = time.process_time()
-compute_e_ver1(n)
+print(compute_e_ver1(n))
 after_1 = time.process_time()
 print(after_1 - before_1)
-"""before_2 = time.process_time()
-compute_e_ver2(n)
+before_2 = time.process_time()
+print(compute_e_ver2(n))
 after_2 = time.process_time()
-
-
-print(after_2 - before_2)"""
+print(after_2 - before_2)
