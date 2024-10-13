@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS3 Selector Basic</title>
+    <style>
+      #header h1 {
+        color: red;
+      }
+      #section h1 {
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1 class="title">Lorem ipsum</h1>
+      <div id="nav">
+        <h1>Navigation</h1>
+      </div>
+    </div>
+    <div id="section">
+      <h1 class="title">Lorem ipsum</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </body>
+</html>
+
+<!--
+후손 선택자를 사용할때 header 태그의 h1과 h2를 선택하고 싶다면 아래처럼 사용해야됨
+
+#header h1, #header h2
+
+만약 아래처럼 사용하게되면 header 태그의 후손 h1과 그냥 h2에 스타일이 적용된다
+#header h1, h2 (x)
+
+-->

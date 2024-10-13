@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>연습문제</title>
+    <style>
+      .input {
+        border-radius: 100px 100px 100px 100px;
+        border: none;
+      }
+      .button {
+        width: 180px; /* 원하는 너비 설정 */
+        padding: 2px;
+        font-size: 16px;
+        border-radius: 100px 100px 100px 100px;
+        border: none;
+      }
+      label {
+        font-weight: bold;
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>간단한 입력양식</h1>
+    <table>
+      <tr>
+        <td><label type="text" value="아이디">아이디</label></td>
+        <td><input class="input" type="text" /></td>
+      </tr>
+      <tr>
+        <td><label type="text" value="비밀번호">비밀번호</label></td>
+        <td><input class="input" type="text" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input class="button" type="submit" value="제출" /></td>
+      </tr>
+    </table>
+  </body>
+</html>

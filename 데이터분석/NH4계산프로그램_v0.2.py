@@ -4,6 +4,7 @@ from tkinter import *
 import os
 import sys
 
+# 계산식 이미지 불러오는 함수
 def resource_path(relative_path):
   base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
   return os.path.join(base_path, relative_path)
@@ -128,7 +129,7 @@ ent6_a.place(x=585, y=160)
 
 lbra1 = ttk.Label(root, text = '')
 lbra2 = ttk.Label(root, text = '결과값')
-image_path = resource_path("exll.png")
+image_path = resource_path("NH4_formula.png")
 
 photo = PhotoImage(file= image_path)
 photo = photo.subsample(4)
