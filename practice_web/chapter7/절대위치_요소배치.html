@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absolute batch</title>
+    <style>
+      #container {
+        width: 500px;
+        height: 300px;
+        border: 3px solid black;
+        position: relative;
+      }
+      .circle {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50% 50%;
+      }
+      #red {
+        background-color: red;
+        left: 20px;
+        top: 20px;
+      }
+      #green {
+        background-color: green;
+        right: 20px;
+        top: 20px;
+      }
+      #blue {
+        background-color: blue;
+        right: 20px;
+        bottom: 20px;
+      }
+      #yellow {
+        background-color: yellow;
+        left: 20px;
+        bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dummy Text</h1>
+    <div id="container">
+      <div id="red" class="circle"></div>
+      <div id="green" class="circle"></div>
+      <div id="blue" class="circle"></div>
+      <div id="yellow" class="circle"></div>
+    </div>
+    <h1>Dummy Text</h1>
+  </body>
+</html>
+
+<!--
+position: absolute 일 경우, 가장 가까운 조상 요소를 기준으로 배치.
+조상 중 position 속성을 가진 요소가 없다면, 초기 컨테이닝 블록 (body) 을 기준으로 배치
+
+
+position: absolute 일 경우, 가장 가까운 조상 요소를 기준으로 배치하며, normal flow에서 벗어난다
+조상 중 position 속성을 가진 요소가 없다면, viewport를 기준으로 배치된다
+
+
+-->

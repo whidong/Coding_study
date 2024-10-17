@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div.item {
+        float: left;
+        margin: 0 3px;
+        padding: 10px;
+        border: 1px solid black;
+      }
+
+      div.container {
+        overflow: hidden;
+      }
+      /*overflow속성을 hidden으로 설정하여 block fomatting context가 생성되어 
+      자식들을 float으로 감싸도 높이를 잘 감지하게 할 수 있도록 해줌*/
+    </style>
+  </head>
+  <body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <div class="container">
+      <div class="item">메뉴 - 1</div>
+      <div class="item">메뉴 - 2</div>
+      <div class="item">메뉴 - 3</div>
+      <div class="item">메뉴 - 4</div>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </body>
+</html>
+
+<!--
+수평 정렬 레이아웃
+
+
+float 요소가 normal flow에서 벗어나서 좌측이나 우측에 배치되게 하여 텍스트 및 
+inline 요소가 그 주위를 감싸게 하기 위한 속성
+
+부모가 되는 컨테이너의 자식들이 모두 float 속성을 가지는 경우, normal flow에
+포함된 자식이 없어서 부모 컨테이너의 높이가 0이 되어버림
+
+부모 div가 내부의 각각의 div 자식들의 높이를 모름 
+normal flow에 자식이 없어서 부모 컨테이너의 높이가 0이 되어버림
+
+자식의 float 속성으로 위치를 지정한 후, 부모의 overflow 속성을 hidden으로
+Overflow 속성을 hidden으로 설정할 경우 block formatting context 가 생성됨 (작은 body 같은 것)
+-->

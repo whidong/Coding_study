@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One True layout</title>
+    <style>
+      body {
+        width: 500px;
+        margin: 10px auto;
+      }
+
+      #left {
+        float: left;
+        width: 150px;
+        background-color: red;
+      }
+      #right {
+        float: right;
+        width: 350px;
+        background-color: blue;
+      }
+      #top {
+        background-color: green;
+      }
+      #bottom {
+        background-color: purple;
+      }
+      #middel {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top">>Lorem ipsum dolor sit amet, consectetur.</div>
+    <div id="middle">
+      <div id="left">Lorem ipsum dolor sit amet, consectetur.</div>
+      <div id="right">Lorem ipsum dolor sit amet, consectetur.</div>
+    </div>
+    <div id="bottom">Lorem ipsum dolor sit amet, consectetur.</div>
+  </body>
+</html>
