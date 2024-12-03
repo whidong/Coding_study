@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function callTenTimes(callback) {
+        for (let i = 0; i < 10; i++) {
+          callback() // 매개변수로 전달된 함수를 호출합니다.
+        }
+      }
+
+      // 변수를 선언합니다.
+      let fun = function () {
+        alert('함수 호출')
+      }
+
+      callTenTimes(fun) // 매개변수 callback으로 fun을 전달.
+    </script>
+  </head>
+  <body></body>
+</html>
